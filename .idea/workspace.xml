@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80be3f03-7c6f-4bb2-b175-f105d1994830" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-    </list>
+    <list default="true" id="80be3f03-7c6f-4bb2-b175-f105d1994830" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -32,8 +30,8 @@
       <file leaf-file-name="scatter-map.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scatter-map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="233" column="19" lean-forward="false" selection-start-line="233" selection-start-column="19" selection-end-line="233" selection-end-column="19" />
+            <state relative-caret-position="152">
+              <caret line="225" column="2" lean-forward="true" selection-start-line="225" selection-start-column="2" selection-end-line="225" selection-end-column="2" />
               <folding>
                 <element signature="e#1210#6096#0" expanded="false" />
                 <element signature="e#7748#15615#0" expanded="false" />
@@ -120,8 +118,8 @@
         <option value="$PROJECT_DIR$/1.html" />
         <option value="$PROJECT_DIR$/hhh.html" />
         <option value="$PROJECT_DIR$/echarts3map.html" />
-        <option value="$PROJECT_DIR$/scatter-map.html" />
         <option value="$PROJECT_DIR$/echarts3map1.html" />
+        <option value="$PROJECT_DIR$/scatter-map.html" />
       </list>
     </option>
   </component>
@@ -224,12 +222,12 @@
       <workItem from="1509433589522" duration="11079000" />
       <workItem from="1509500080867" duration="2965000" />
       <workItem from="1509503570348" duration="13000" />
-      <workItem from="1509503915209" duration="23000" />
+      <workItem from="1509503915209" duration="112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43462000" />
+    <option name="totallyTimeSpent" value="43551000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="341" y="105" width="1400" height="885" extended-state="0" />
@@ -685,8 +683,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scatter-map.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="233" column="19" lean-forward="false" selection-start-line="233" selection-start-column="19" selection-end-line="233" selection-end-column="19" />
+        <state relative-caret-position="152">
+          <caret line="225" column="2" lean-forward="true" selection-start-line="225" selection-start-column="2" selection-end-line="225" selection-end-column="2" />
           <folding>
             <element signature="e#1210#6096#0" expanded="false" />
             <element signature="e#7748#15615#0" expanded="false" />
