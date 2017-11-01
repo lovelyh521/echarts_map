@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>嵌套饼图</title>
+    <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+    <script src="https://gw.alipayobjects.com/as/g/datavis/g2/2.3.12/index.js"></script>
+</head>
+<body style="text-align: center">
+<div id="c1"></div>
+<p>sdfasdfasdf</p>
+<script>
+    var data = [{"name":"能繁母猪","value":847.0,"type":"养殖业"},{"name":"玉米","value":4866.0,"type":"种植业"},{"name":"马铃薯","value":1198.0,"type":"种植业"},{"name":"小麦","value":1203.0,"type":"种植业"},{"name":"河南省小麦制种保险","value":71.0,"type":"种植业"},{"name":"小杂粮","value":58.0,"type":"种植业"},{"name":"大豆","value":348.0,"type":"种植业"},{"name":"牛","value":103.0,"type":"养殖业"},{"name":"啦啦啦","value":436.0,"type":"种植业"},{"name":"河南省订单农业小麦种植保险","value":15.0,"type":"种植业"},{"name":"森林","value":27.0,"type":"种植业"},{"name":"奶牛","value":71.0,"type":"养殖业"},{"name":"农基具","value":21.0,"type":"涉农"},{"name":"苹果","value":88.0,"type":"种植业"},{"name":"设施蔬菜大棚","value":20.0,"type":"种植业"},{"name":"核桃","value":20.0,"type":"种植业"},{"name":"小杂粮气象指数","value":15.0,"type":"种植业"},{"name":"猪","value":125.0,"type":"养殖业"},{"name":"猪崽","value":11.0,"type":"养殖业"},{"name":"羊","value":15.0,"type":"种植业"},{"name":"鸭","value":6.0,"type":"养殖业"},{"name":"小米","value":218.0,"type":"种植业"},{"name":"芝麻","value":24.0,"type":"种植业"},{"name":"22","value":2.0,"type":"种植业"},{"name":"梨","value":13.0,"type":"种植业"},{"name":"商业性杂粮保险","value":43.0,"type":"种植业"},{"name":"山西地方财政谷子保险","value":10.0,"type":"种植业"},{"name":"河南省玉米制种","value":2.0,"type":"种植业"},{"name":"江苏省条斑紫菜综合保险","value":2.0,"type":"种植业"},{"name":"蛋（种）鸡养殖保险","value":3.0,"type":"养殖业"},{"name":"江苏省小麦制种","value":1.0,"type":"种植业"},{"name":"杂粮（谷子）天气指数综合保险","value":59.0,"type":"种植业"},{"name":"河南省小麦制种","value":2.0,"type":"种植业"},{"name":"玉米气象指数","value":8.0,"type":"种植业"},{"name":"大米","value":1.0,"type":"种植业"},{"name":"啦啦啦2","value":8.0,"type":"种植业"},{"name":"谷子、糜黍保险","value":11.0,"type":"种植业"},{"name":"梅杏","value":4.0,"type":"种植业"},{"name":"1","value":2.0,"type":"养殖业"},{"name":"房屋","value":1.0,"type":"涉农"},{"name":"江苏水稻制种","value":1.0,"type":"种植业"},{"name":"2","value":1.0,"type":"养殖业"}];
+    var Stat = G2.Stat;
+    var chart = new G2.Chart({
+        id: 'c1',
+        forceFit: true,
+        height: 550,
+        width: '100%',
+        plotCfg: {
+            margin: [105,600,65,35]
+        }
+    });
+    chart.legend(false);
+    var viewBack = chart.createView();
+    viewBack.source(data);
+    viewBack.coord('theta', {
+        radius: 0.5 // 设置饼图的大小
+    });
+    chart.legend('name', {
+        title: '险种',
+        itemWrap:'true',
+        position: 'right',
+        selectedMode: 'false', // 禁用图例筛选
+        mode: 'false', // 禁用图例筛选
+        dx: -100, // 整个图例的水平偏移距离
+//        dy: -100, // 整个图例的垂直偏移距离
+    });
+    chart.legend('type', {
+        title: '险种大类',
+        position: 'right',
+        selectedMode: 'false', // 禁用图例筛选
+        mode: 'false', // 禁用图例筛选
+        dx: -100, // 整个图例的水平偏移距离
+//        dy: -300, // 整个图例的垂直偏移距离
+    });
+    // 绘制内部的饼图
+    viewBack.intervalStack()
+        .position(Stat.summary.percent('value'))
+        .color('type',['#4E7CCC', '#36B3C3', '#F9815C'])
+        .label('type', {
+            offset: -10,
+            label: {
+                fontSize: 12
+            }
+        });
+    // 绘制外圈饼图
+    var view = chart.createView();
+    view.source(data);
+    view.coord('theta', {
+        inner: 0.75 // 设置空心部分的大小
+    });
+    view.intervalStack()
+        .position(Stat.summary.percent('value'))
+        .color('name')
+        .label('name*type')
+        .selected({
+            mode: 'multiple' // 设置 geom 的选择模式
+        });
+    chart.render();
+    // 交互，内部饼图某个部分被点击触发外圈饼图选中
+    chart.on('plotclick', function(ev) {
+        var chartGeom = viewBack.get('geoms')[0];
+        var viewGeom = view.get('geoms')[0];
+        viewGeom.clearSelected();
+        var selected = chartGeom.getSelected();
+        if (selected) {
+            var data = selected['_origin'];
+            var selectedType = data.type;
+            var items = viewGeom.getData();
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                if (item['_origin'].type === selectedType) {
+                    viewGeom.setSelected(item);
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
